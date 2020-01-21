@@ -1,14 +1,15 @@
-const {useState} = React
+const {useState, createRef} = React
 
 function Container(){
   const [data, setData] = useState('')
   const [input, setInput] = useState('')
+  const inputRef = createRef()
   return (<div>
     <div>{data}</div>
-    <input id='input' type='text' value={input} onChange={(e)=>{setInput(e.target.value)}} />
+    <input ref={inputRef} id='input' type='text' value={input} onChange={(e)=>{setInput(e.target.value)}} />
     <button onClick={()=>{
       setData(input)
-      console.log($('#input').val())
+      console.log(inputRef.current.value)
     }}>Set Data</button>
   </div>)
 }
